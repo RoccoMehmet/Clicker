@@ -1,0 +1,319 @@
+import turtle
+import time
+
+multiplier = 1
+clicks = 0
+computericon = "computer.gif"
+
+window = turtle.Screen()
+window.title("Rocco's Computer Clicker")
+window.bgcolor("teal")
+
+window.register_shape("menu.gif")
+window.register_shape("computer.gif")
+window.register_shape("timer.gif")
+window.register_shape("rules.gif")
+window.register_shape("fire.gif")
+window.register_shape("skins.gif")
+window.register_shape("end.gif")
+window.register_shape("computer2.gif")
+window.register_shape("computer3.gif")
+
+endicon = turtle.Turtle()
+endicon.shape("end.gif")
+endicon.penup()
+endicon.hideturtle()
+endicon.goto(-445, 220)
+
+menu = turtle.Turtle()
+menu.shape("menu.gif")
+menu.hideturtle()
+
+shop = turtle.Turtle()
+shop.shape("skins.gif")
+shop.penup()
+shop.hideturtle()
+shop.goto(-445, 220)
+shop.showturtle()
+
+ruletab = turtle.Turtle()
+ruletab.shape("rules.gif")
+ruletab.penup()
+ruletab.hideturtle()
+ruletab.goto(400, 220)
+ruletab.showturtle()
+
+timer = turtle.Turtle()
+timer.shape("timer.gif")
+timer.penup()
+timer.hideturtle()
+timer.goto(385, -175)
+timer.showturtle()
+
+fire = turtle.Turtle()
+fire.shape("fire.gif")
+fire.penup()
+fire.hideturtle()
+fire.goto(-430, -165)
+fire.showturtle()
+
+computer = turtle.Turtle()
+computer.penup()
+computer.shape(computericon)
+
+computerbasic = turtle.Turtle()
+computerbasic.penup()
+computerbasic.hideturtle()
+computerbasic.goto(0, 0)
+computerbasic.shape("computer.gif")
+
+computer2 = turtle.Turtle()
+computer2.penup()
+computer2.hideturtle()
+computer2.goto(-350, 0)
+computer2.shape("computer2.gif")
+
+computer3 = turtle.Turtle()
+computer3.penup()
+computer3.hideturtle()
+computer3.goto(350, 0)
+computer3.shape("computer3.gif")
+
+pen = turtle.Turtle()
+pen.hideturtle()
+pen.color("white")
+pen.penup()
+pen.goto(11, 170)
+pen.write(f"Clicks: {clicks}",
+          align="center",
+          font=("Courier New", 32, "normal"))
+
+multipliercheck = turtle.Turtle()
+multipliercheck.hideturtle()
+multipliercheck.color("white")
+multipliercheck.penup()
+multipliercheck.goto(11, 145)
+multipliercheck.write(f"Click Value: {multiplier}",
+                      align="center",
+                      font=("Courier New", 15, "normal"))
+
+
+def powerup2(x, y):
+    global clicks
+    global multiplier
+    if clicks >= 150:
+        fire.goto(-430, -175)
+        fire.goto(-430, -165)
+        clicks -= 150
+        multiplier = multiplier + 1
+        pen.clear()
+        multipliercheck.clear()
+        pen.write(f"Clicks: {clicks}",
+                  align="center",
+                  font=("Courier New", 32, "normal"))
+        multipliercheck.goto(11, 145)
+        multipliercheck.write(f"Click Value: {multiplier}",
+                              align="center",
+                              font=("Courier New", 15, "normal"))
+    else:
+        pass
+
+
+def clicked(x, y):
+    global clicks
+    global multiplier
+    computer.goto(
+        0,
+        10,
+    )
+    computer.goto(
+        0,
+        0,
+    )
+    clicks += multiplier
+    pen.clear()
+    pen.write(f"Clicks: {clicks}",
+              align="center",
+              font=("Courier New", 32, "normal"))
+
+
+def powerup1(x, y):
+    global clicks
+    global multiplier
+    if clicks >= 25:
+        timer.goto(385, -165)
+        timer.goto(385, -175)
+        clicks -= 25
+        for i in range(60):
+            time.sleep(1)
+            clicks += multiplier
+            computer.goto(
+                0,
+                10,
+            )
+            computer.goto(
+                0,
+                0,
+            )
+            pen.clear()
+            pen.write(f"Clicks: {clicks}",
+                      align="center",
+                      font=("Courier New", 32, "normal"))
+    else:
+        pass
+
+
+def rulebook(x, y):
+    global clicks
+    ruletab.goto(400, 230)
+    ruletab.goto(400, 220)
+    pen.clear()
+    multipliercheck.clear()
+    ruletab.hideturtle()
+    shop.hideturtle()
+    fire.hideturtle()
+    computer.hideturtle()
+    timer.hideturtle()
+    menu.showturtle()
+
+
+def shopscene(x, y):
+    window.bgcolor("orange")
+    shop.goto(-445, 230)
+    shop.goto(-445, 220)
+    computer.hideturtle()
+    pen.clear()
+    multipliercheck.clear()
+    menu.hideturtle()
+    fire.hideturtle()
+    computer.hideturtle()
+    timer.hideturtle()
+    ruletab.hideturtle()
+    shop.hideturtle()
+    endicon.showturtle()
+    computer2.showturtle()
+    computer3.showturtle()
+    computerbasic.showturtle()
+
+
+def homescene(x, y):
+    endicon.goto(-445, 230)
+    endicon.goto(-445, 220)
+    window.bgcolor("teal")
+    computer3.hideturtle()
+    computer2.hideturtle()
+    ruletab.showturtle()
+    shop.showturtle()
+    endicon.hideturtle()
+    fire.showturtle()
+    menu.hideturtle()
+    timer.showturtle()
+    computer.showturtle()
+    pen.write(f"Clicks: {clicks}",
+              align="center",
+              font=("Courier New", 32, "normal"))
+    multipliercheck.goto(11, 145)
+    multipliercheck.write(f"Click Value: {multiplier}",
+                          align="center",
+                          font=("Courier New", 15, "normal"))
+
+
+def skin1(x, y):
+    computer2.goto(-350, 10)
+    computer2.goto(-350, 0)
+    computer2.hideturtle()
+    computer3.hideturtle()
+    computerbasic.hideturtle()
+    endicon.hideturtle()
+    computer.shape("computer2.gif")
+    window.bgcolor("palevioletred")
+    fire.showturtle()
+    menu.hideturtle()
+    timer.showturtle()
+    computer.showturtle()
+    shop.showturtle()
+    ruletab.showturtle()
+    pen.write(f"Clicks: {clicks}",
+              align="center",
+              font=("Courier New", 32, "normal"))
+    multipliercheck.goto(11, 145)
+    multipliercheck.write(f"Click Value: {multiplier}",
+                          align="center",
+                          font=("Courier New", 15, "normal"))
+
+
+def skin2(x, y):
+    computer3.goto(350, 10)
+    computer3.goto(350, 0)
+    computer2.hideturtle()
+    computer3.hideturtle()
+    computerbasic.hideturtle()
+    endicon.hideturtle()
+    computer.shape("computer3.gif")
+    window.bgcolor("dim gray")
+    fire.showturtle()
+    menu.hideturtle()
+    timer.showturtle()
+    computer.showturtle()
+    shop.showturtle()
+    ruletab.showturtle()
+    pen.write(f"Clicks: {clicks}",
+              align="center",
+              font=("Courier New", 32, "normal"))
+    multipliercheck.goto(11, 145)
+    multipliercheck.write(f"Click Value: {multiplier}",
+                          align="center",
+                          font=("Courier New", 15, "normal"))
+
+
+def skin3(x, y):
+    computerbasic.goto(0, 10)
+    computerbasic.goto(0, 0)
+    computer2.hideturtle()
+    computer3.hideturtle()
+    computerbasic.hideturtle()
+    endicon.hideturtle()
+    computer.shape("computer.gif")
+    window.bgcolor("teal")
+    fire.showturtle()
+    menu.hideturtle()
+    timer.showturtle()
+    computer.showturtle()
+    shop.showturtle()
+    ruletab.showturtle()
+    pen.write(f"Clicks: {clicks}",
+              align="center",
+              font=("Courier New", 32, "normal"))
+    multipliercheck.goto(11, 145)
+    multipliercheck.write(f"Click Value: {multiplier}",
+                          align="center",
+                          font=("Courier New", 15, "normal"))
+
+
+def closemenu(x, y):
+    ruletab.showturtle()
+    shop.showturtle()
+    fire.showturtle()
+    menu.hideturtle()
+    timer.showturtle()
+    computer.showturtle()
+    pen.write(f"Clicks: {clicks}",
+              align="center",
+              font=("Courier New", 32, "normal"))
+    multipliercheck.goto(11, 145)
+    multipliercheck.write(f"Click Value: {multiplier}",
+                          align="center",
+                          font=("Courier New", 15, "normal"))
+
+
+computer.onclick(clicked)
+timer.onclick(powerup1)
+ruletab.onclick(rulebook)
+fire.onclick(powerup2)
+shop.onclick(shopscene)
+endicon.onclick(homescene)
+computer2.onclick(skin1)
+computer3.onclick(skin2)
+computerbasic.onclick(skin3)
+menu.onclick(closemenu)
+
